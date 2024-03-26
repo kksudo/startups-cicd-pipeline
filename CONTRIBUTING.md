@@ -10,6 +10,31 @@ There are many ways you can contribute to our project:
 - **Suggesting Enhancements**: This section guides you through submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality.
 - **Pull Requests**: This section guides you through the process of submitting a pull request.
 
+### Choosing the Right Branch
+
+To maintain the workflow and stability of the project, we use a specific branch strategy that contributors should follow:
+
+- **`main` Branch**: This is the stable branch of the project. All the production-ready code resides here. You should base your work on the `main` branch only if you are making minor changes or fixes that don't affect the project's overall functionality.
+
+- **Feature Branches**: For new features or non-trivial changes, create a new branch from `main`. Name your branch something descriptive, such as `feature/your-feature-name`. This helps everyone understand what your branch is about.
+
+- **Hotfix Branches**: If you're fixing an urgent bug in the production code, create a branch prefixed with `hotfix/`, e.g., `hotfix/urgent-bug-fix`. Hotfix branches are created from the `main` branch and should be merged back into `main` and `develop` (if applicable) as soon as the fix is complete.
+
+### How to Choose a Branch
+
+1. **For New Features**: Always branch off `main` using the `feature/` prefix.
+2. **For Bug Fixes**: If the bug is in production, create a `hotfix/` branch off `main`. If the bug is in an unreleased code, base your work on the appropriate feature or development branch.
+3. **For Documentation and Minor Changes**: Directly on the `main` branch is usually okay, but consider the impact of your changes. When in doubt, use a feature branch.
+
+### Before You Start
+
+Before starting your work, check the repository to ensure there isn't already a branch addressing your issue or feature. If a branch exists, consider contributing to that branch instead of starting anew.
+
+Remember, choosing the right branch at the start of your work helps streamline the development process and makes managing contributions easier for everyone.
+
+If you're ever unsure about where to base your work, don't hesitate to open an issue to ask for guidance.
+
+
 ### Reporting Bugs
 
 Bugs are tracked as [GitHub issues](https://github.com/icubebot/startups-ci-cd-pipeline/issues). Create an issue and provide the following information:
