@@ -49,7 +49,7 @@ to facilitate easy clone ready to go code snippets and examples for your project
 ## Quick Start
 
 1. Chose the right tag for your project. For example, if you are using Python, you can use the following tag:
-   [python-v0.0.1-rc1](https://github.com/kksudo/startups-cicd-pipeline/releases/tag/python-v0.0.1-rc1)
+   [python-v0.0.1](https://github.com/kksudo/startups-cicd-pipeline/releases/tag/python-v0.0.1)
 
 2. **Fork or Clone This Repository**
 
