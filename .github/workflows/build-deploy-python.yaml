@@ -1,0 +1,142 @@
+name: 'Build, Push, Deploy'
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-only:
+        default: false
+        description: 'Build and push to the Dockerhub registry only'
+        required: false
+        type: boolean
+  push:
+    paths:
+      - 'devops/docker/**'
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - 'main'
+
+env:
+  DOCKER_DIR: './devops/docker/'
+  DOCKER_REPO: 'icubebot'
+  DOCKER_USERNAME: 'kksudo'
+
+jobs:
+  docker-build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}
+          tags: |
+            type=raw,value=main
+            type=ref,event=branch
+            type=ref,event=tag
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}.{{minor}}.{{patch}}
+            type=semver,pattern={{version}}
+          flavor: |
+            latest=auto
+            prefix=pharmacy-api-,onlatest=true
+          labels: |
+            maintainer=https://github.com/kksudo/
+            org.opencontainers.image.title=Pharmacy API
+            org.opencontainers.image.description=API for pharmacy project
+            org.opencontainers.image.url=https://hub.docker.com/r/${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}
+            
+      - name: Build and push to the registry
+        uses: docker/build-push-action@v5
+        with:
+          annotations: ${{ steps.meta.outputs.annotations }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: .
+          file: ${{ env.DOCKER_DIR }}/Dockerfile
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+    outputs:
+      tag: ${{ steps.meta.outputs.version }}
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: docker-build-push
+    if: github.event_name != 'pull_request' && github.event.inputs.build-only != true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Generate env to pass to the next step
+        id: env-gen
+        env:
+          DOCKER_DIR: "devops/docker"
+        run: |
+          echo "Generate env vars for the `compose.yaml` file ..."
+          
+          DOCKER_COMPOSE_FILE="$(yq -o=json '.' $DOCKER_DIR/compose.template.yaml)"
+          echo "DOCKER_COMPOSE_FILE="$(echo "$DOCKER_COMPOSE_FILE")"" >> "$GITHUB_OUTPUT"
+          NGINX_CONFIG_FILE=$(cat "$DOCKER_DIR/proxy/nginx.conf" | base64 -w 0)
+          echo "NGINX_CONFIG_FILE="$(echo "$NGINX_CONFIG_FILE")"" >> "$GITHUB_OUTPUT"
+          NGINX_INDEX_FILE=$(cat "$DOCKER_DIR/proxy/index.html" | base64 -w 0)
+          echo "NGINX_INDEX_FILE="$(echo "$NGINX_INDEX_FILE")"" >> "$GITHUB_OUTPUT"
+      
+      - name: Login to API instance and deploy a new image
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          API_IMAGE: ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPO }}:${{ needs.docker-build-push.outputs.tag }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DB_URL: ${{ secrets.DB_URL }}
+          DOCKER_COMPOSE_FILE: ${{ steps.env-gen.outputs.DOCKER_COMPOSE_FILE }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PULL_TOKEN }}
+          DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
+          MESSAGE_QUEUE_URL: ${{ secrets.MESSAGE_QUEUE_URL }}
+          NGINX_CONFIG_FILE: ${{ steps.env-gen.outputs.NGINX_CONFIG_FILE }}
+          NGINX_INDEX_FILE: ${{ steps.env-gen.outputs.NGINX_INDEX_FILE }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          SRC_DIR: "/srv/src/icubebot/pharmacy/api"
+        with:
+          host: ${{ secrets.TG_HOST }}
+          username: ${{ secrets.TG_HOST_USERNAME }}
+          key: ${{ secrets.TG_HOST_KEY }}
+          port: 22
+          script_stop: true
+          envs: API_IMAGE,AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,MESSAGE_QUEUE_URL,DB_URL,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,DOCKER_COMPOSE_FILE,NGINX_CONFIG_FILE,NGINX_INDEX_FILE,SRC_DIR,DOCKER_PASSWORD,DOCKER_USERNAME
+          command_timeout: 30m
+          script: |
+            mkdir -p "${SRC_DIR}/proxy"
+            cd "$SRC_DIR" || exit 1
+            
+            # Update nginx config
+            echo "$NGINX_CONFIG_FILE" | base64 -d > proxy/nginx.conf
+            echo "$NGINX_INDEX_FILE" | base64 -d > proxy/index.html
+            
+            # Update docker compose file
+            yq -p=json <<<"$DOCKER_COMPOSE_FILE" > compose.yaml
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            
+            docker compose pull api
+            docker compose up -d
+            docker compose up -d api --force-recreate
+            docker compose up -d nginx --force-recreate

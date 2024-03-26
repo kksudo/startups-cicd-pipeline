@@ -31,9 +31,7 @@ Before you begin, ensure you have the following:
 
 ## Project Tagging and Versioning System
 
-The following table explains the tags used throughout this project to indicate the programming language and the specific
-version of each component or code snippet. These tags will help you quickly identify relevant examples or instructions
-based on your development needs without any not relevant files.
+Read more about the [Project Tags Overview](docs/TAGS.md) for a detailed explanation of the tags used throughout this.
 
 | Tag and Version                                                        | Description                                     |
 |------------------------------------------------------------------------|-------------------------------------------------|
@@ -42,9 +40,6 @@ based on your development needs without any not relevant files.
 | ![java-v1.0.1](https://img.shields.io/badge/Java-v1.0.1-red)           | Code examples written in Java version 1.0.1.    |
 | ![golang-v1.0.1](https://img.shields.io/badge/Golang-v1.0.1-lightgrey) | Code examples written in Golang version 1.0.1.  |
 
-Each tag combines the programming language with a semantic versioning scheme (`vMAJOR.MINOR.PATCH`), making it clear at
-a glance both the technology stack and the versioning of the code or component being discussed. This system is designed
-to facilitate easy clone ready to go code snippets and examples for your project.
 
 ## Quick Start
 
@@ -53,7 +48,7 @@ to facilitate easy clone ready to go code snippets and examples for your project
 
 2. **Fork or Clone This Repository**
 
-   Start by forking or cloning this repository to your GitHub account.
+   Start by forking or cloning this repository to your GitHub account. You need only one branch\tag for your project, which you chose in the first step.
 
 3. **Configure GitHub Secrets**
 
