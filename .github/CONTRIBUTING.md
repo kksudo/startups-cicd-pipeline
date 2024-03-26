@@ -6,7 +6,7 @@ First off, thank you for considering contributing to the Startups CI/CD Pipeline
 
 There are many ways you can contribute to our project:
 
-- **Reporting Bugs**: This section guides you through submitting a bug report. Before submitting a bug report check the [issues](https://github.com/kksudo/startups-ci-cd-pipeline/issues) as you might find out that you don't need to create one.
+- **Reporting Bugs**: This section guides you through submitting a bug report. Before submitting a bug report check the [issues](https://github.com/kksudo/startups-cicd-pipeline/issues) as you might find out that you don't need to create one.
 - **Suggesting Enhancements**: This section guides you through submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality.
 - **Pull Requests**: This section guides you through the process of submitting a pull request.
 
@@ -37,7 +37,7 @@ If you're ever unsure about where to base your work, don't hesitate to open an i
 
 ### Reporting Bugs
 
-Bugs are tracked as [GitHub issues](https://github.com/kksudo/startups-ci-cd-pipeline/issues). Create an issue and provide the following information:
+Bugs are tracked as [GitHub issues](https://github.com/kksudo/startups-cicd-pipeline/issues). Create an issue and provide the following information:
 
 - **Use a clear and descriptive title** for the issue to identify the problem.
 - **Describe the exact steps which reproduce the problem** in as many details as possible.
@@ -45,7 +45,7 @@ Bugs are tracked as [GitHub issues](https://github.com/kksudo/startups-ci-cd-pip
 
 ### Suggesting Enhancements
 
-Enhancement suggestions are also tracked as [GitHub issues](https://github.com/kksudo/startups-ci-cd-pipeline/issues). Fill in the template with all the necessary information:
+Enhancement suggestions are also tracked as [GitHub issues](https://github.com/kksudo/startups-cicd-pipeline/issues). Fill in the template with all the necessary information:
 
 - **Use a clear and descriptive title** for the issue to identify the suggestion.
 - **Provide a step-by-step description of the suggested enhancement** in as many details as possible.

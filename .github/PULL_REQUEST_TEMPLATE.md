@@ -1,6 +1,6 @@
 # Pull Request Template
 
-Thank you for your contribution to the `startups-ci-cd-pipeline`! Before submitting your PR, please make sure you have completed the following checklist:
+Thank you for your contribution to the `startups-cicd-pipeline`! Before submitting your PR, please make sure you have completed the following checklist:
 
 ## Checklist
 
