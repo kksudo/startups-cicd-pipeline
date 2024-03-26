@@ -67,6 +67,39 @@ Enhancement suggestions are also tracked as [GitHub issues](https://github.com/k
 - Limit the first line to 72 characters or less
 - Reference issues and pull requests liberally after the first line
 
+### Issues
+
+#### Use a spoiler to hide long logs or stack traces:
+
+<details>
+  <summary>Spoiler warning</summary>
+
+Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
+
+  ```javascript
+  console.log("I'm a code block!");
+  ```
+</details>
+
+##### How to:
+
+````markdown
+<details>
+  <summary>Spoiler warning</summary>
+  
+  Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
+  
+  ```javascript
+  console.log("I'm a code block!");
+  ```
+  
+</details>
+````  
+
+##### Credits:
+[https://github.com/dear-github/dear-github/issues/166](https://github.com/dear-github/dear-github/issues/166)
+
+
 ## Additional Notes
 
 Remember that contributions to this project should be a respectful communication process. We are all working on this project together to make it the best it can be. Let's have a good time doing it.
