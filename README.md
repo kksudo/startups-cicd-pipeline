@@ -2,7 +2,7 @@
 
 This repository provides a streamlined CI/CD pipeline for deploying Docker Compose applications on VPS-style instances (e.g., AWS EC2, DigitalOcean Droplets) using GitHub Actions. It simplifies your development workflow and ensures seamless deployments with our ready-to-use GitHub Action configurations and Docker setup.
 
-**N.B.** Feel free to open a [new issue](https://github.com/icubebot/startups-ci-cd-pipeline/issues) if you need this pipeline to support additional features or have any questions.
+**N.B.** Feel free to open a [new issue](https://github.com/kksudo/startups-ci-cd-pipeline/issues) if you need this pipeline to support additional features or have any questions.
 
 ## Features
 
@@ -71,4 +71,4 @@ Twitter - [@kk_sudo](https://twitter.com/kk_sudo)
 
 LinkedIn - [Kirill](https://www.linkedin.com/in/kazakovk/)
 
-Project Link: [https://github.com/icubebot/startups-ci-cd-pipeline](https://github.com/icubebot/startups-ci-cd-pipeline)
+Project Link: [https://github.com/kksudo/startups-ci-cd-pipeline](https://github.com/kksudo/startups-ci-cd-pipeline)
