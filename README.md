@@ -53,7 +53,7 @@ The GitHub Actions workflow consists of the following steps:
 
 ## Contributing
 
-[Contributions](CONTRIBUTING.md) are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+[Contributions](/.github/CONTRIBUTING.md) are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
