@@ -1,45 +1,77 @@
 # Docker Compose CI/CD Pipeline
 
-This repository provides a streamlined CI/CD pipeline for deploying Docker Compose applications on VPS-style instances (e.g., AWS EC2, DigitalOcean Droplets) using GitHub Actions. It simplifies your development workflow and ensures seamless deployments with our ready-to-use GitHub Action configurations and Docker setup.
+This repository provides a streamlined CI/CD pipeline for deploying Docker Compose applications on VPS-style instances (
+e.g., AWS EC2, DigitalOcean Droplets) using GitHub Actions. It simplifies your development workflow and ensures seamless
+deployments with our ready-to-use GitHub Action configurations and Docker setup.
 
-**N.B.** Feel free to open a [new issue](https://github.com/kksudo/startups-cicd-pipeline/issues) if you need this pipeline to support additional features or have any questions.
+**N.B.** Feel free to open a [new issue](https://github.com/kksudo/startups-cicd-pipeline/issues) if you need this
+pipeline to support additional features or have any questions.
+
+Check the docs in the [docs](/docs/README.md) directory or wiki for more information.
 
 ## Features
 
 - **Automated Testing**: Run tests automatically to ensure code integrity before deployment.
 - **Docker Image Build**: Automatically build your Docker image as part of the CI pipeline.
-- **Seamless Deployments**: Deploy your Docker Compose application to a VPS with minimal setup, supporting platforms like EC2, DigitalOcean, Hetzner, etc...
+- **Seamless Deployments**: Deploy your Docker Compose application to a VPS with minimal setup, supporting platforms
+  like EC2, DigitalOcean, Hetzner, etc...
 - **Pre-configured GitHub Actions**: Utilize our GitHub Actions workflow for a hands-off approach to CI/CD.
 
 ## Prerequisites
 
+If you are not familiar with any services, please check this page: [INTRODUCING.md](docs/INTRODUCING.md)
+
 Before you begin, ensure you have the following:
+
 - A [GitHub account](https://github.com/join)
 - A VPS (e.g., AWS EC2, DigitalOcean Droplet) with Docker and Docker Compose installed
-  - [AWS Free Tier for 1 year](https://aws.amazon.com/free)
-  - [DigitalOcean Free $200 Credit](https://try.digitalocean.com/freetrialoffer/)
-- [SSH access to your VPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-ssh.html)
+    - [AWS Free Tier for 1 year](https://aws.amazon.com/free)
+    - [DigitalOcean Free $200 Credit](https://try.digitalocean.com/freetrialoffer/)
+- SSH access to your VPS
+
+## Project Tagging and Versioning System
+
+The following table explains the tags used throughout this project to indicate the programming language and the specific
+version of each component or code snippet. These tags will help you quickly identify relevant examples or instructions
+based on your development needs without any not relevant files.
+
+| Tag and Version                                                        | Description                                     |
+|------------------------------------------------------------------------|-------------------------------------------------|
+| ![python-v1.0.1](https://img.shields.io/badge/Python-v1.0.1-blue)      | Code examples written in Python version 1.0.1.  |
+| ![nodejs-v1.0.1](https://img.shields.io/badge/Node.js-v1.0.1-green)    | Code examples written in Node.js version 1.0.1. |
+| ![java-v1.0.1](https://img.shields.io/badge/Java-v1.0.1-red)           | Code examples written in Java version 1.0.1.    |
+| ![golang-v1.0.1](https://img.shields.io/badge/Golang-v1.0.1-lightgrey) | Code examples written in Golang version 1.0.1.  |
+
+Each tag combines the programming language with a semantic versioning scheme (`vMAJOR.MINOR.PATCH`), making it clear at
+a glance both the technology stack and the versioning of the code or component being discussed. This system is designed
+to facilitate easy clone ready to go code snippets and examples for your project.
 
 ## Quick Start
 
-1. **Fork or Clone This Repository**
+1. Chose the right tag for your project. For example, if you are using Python, you can use the following tag:
+   [python-v0.0.1-rc1](https://github.com/kksudo/startups-cicd-pipeline/releases/tag/python-v0.0.1-rc1)
+
+2. **Fork or Clone This Repository**
 
    Start by forking or cloning this repository to your GitHub account.
 
-2. **Configure GitHub Secrets**
+3. **Configure GitHub Secrets**
 
-   Navigate to your repository settings, find the Secrets section, and add the following:
-    - `HOST`: Your VPS IP address or domain name.
-    - `SSH_KEY`: Your private SSH key (base64 encoded) for server access.
-    - `USER`: The SSH user for your server.
+   Add the following secrets to your GitHub repository:
+    - `SSH_PRIVATE_KEY`: Your VPS SSH private key.
+    - `SSH_PUBLIC_KEY`: Your VPS SSH public key.
+    - `SSH_USERNAME`: Your VPS SSH username.
+    - `SSH_HOST`: Your VPS SSH host.
 
-3. **Customize Your Docker Compose Setup**
+   You can add these secrets by navigating to your repository's `Settings` > `Secrets` > `New repository secret`.
+4. **Customize Your Docker Compose Setup**
 
-   Modify the `compose.yml` file in the repository to suit your application's needs.
+   Modify the `docker/compose.yml` file in the repository to suit your application's needs.
 
-4. **Push Changes**
+5. **Push Changes**
 
-   Any push to your `main`(default) branch will trigger the CI/CD pipeline, running tests, building your Docker image, and deploying your application to your VPS.
+   Any push to your `main`(default) branch will trigger the CI/CD pipeline, running tests, building your Docker image,
+   and deploying your application to your VPS.
 
 ## Workflow Details
 
@@ -53,13 +85,8 @@ The GitHub Actions workflow consists of the following steps:
 
 ## Contributing
 
-[Contributions](/.github/CONTRIBUTING.md) are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+[Contributions](/.github/CONTRIBUTING.md) are what make the open-source community such an amazing place to learn,
+inspire, and create. Any contributions you make are **greatly appreciated**.
 
 ## License
 
