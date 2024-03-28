@@ -4,6 +4,9 @@
 
 Welcome to the documentation section of our project! Here, you'll find detailed guides, reference materials, and insights into the architecture and usage of our project. Whether you're a new user getting started, a contributor looking to understand the inner workings, this documentation is designed to provide you with the information you need.
 
+## Table of contents
+
+
 
 ## Desired dir structure for new project
 

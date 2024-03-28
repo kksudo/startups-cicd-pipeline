@@ -9,6 +9,12 @@ pipeline to support additional features or have any questions.
 
 Check the docs in the [docs](/docs/README.md) directory or wiki for more information.
 
+| Page                    | Link                            |
+|-------------------------|---------------------------------|
+| Chose Tag to clone repo | [Link](docs/TAGS.md)            |
+| Contributing Guide      | [Link](.github/CONTRIBUTING.md) |
+| Refs and links          | [Link](docs/INTRODUCING.md)     |
+
 ## Features
 
 - **Automated Testing**: Run tests automatically to ensure code integrity before deployment.
@@ -29,18 +35,6 @@ Before you begin, ensure you have the following:
     - [DigitalOcean Free $200 Credit](https://try.digitalocean.com/freetrialoffer/)
 - SSH access to your VPS
 
-## Project Tagging and Versioning System
-
-Read more about the [Project Tags Overview](docs/TAGS.md) for a detailed explanation of the tags used throughout this.
-
-| Tag and Version                                                        | Description                                     |
-|------------------------------------------------------------------------|-------------------------------------------------|
-| ![python-v1.0.1](https://img.shields.io/badge/Python-v1.0.1-blue)      | Code examples written in Python version 1.0.1.  |
-| ![nodejs-v1.0.1](https://img.shields.io/badge/Node.js-v1.0.1-green)    | Code examples written in Node.js version 1.0.1. |
-| ![java-v1.0.1](https://img.shields.io/badge/Java-v1.0.1-red)           | Code examples written in Java version 1.0.1.    |
-| ![golang-v1.0.1](https://img.shields.io/badge/Golang-v1.0.1-lightgrey) | Code examples written in Golang version 1.0.1.  |
-
-
 ## Quick Start
 
 1. Chose the right tag for your project. For example, if you are using Python, you can use the following tag:
@@ -48,7 +42,8 @@ Read more about the [Project Tags Overview](docs/TAGS.md) for a detailed explana
 
 2. **Fork or Clone This Repository**
 
-   Start by forking or cloning this repository to your GitHub account. You need only one branch\tag for your project, which you chose in the first step.
+   Start by forking or cloning this repository to your GitHub account. You need only one branch\tag for your project,
+   which you chose in the first step.
 
 3. **Configure GitHub Secrets**
 
@@ -67,6 +62,17 @@ Read more about the [Project Tags Overview](docs/TAGS.md) for a detailed explana
 
    Any push to your `main`(default) branch will trigger the CI/CD pipeline, running tests, building your Docker image,
    and deploying your application to your VPS.
+
+## Project Tagging and Versioning System
+
+Read more about the [Project Tags Overview](docs/TAGS.md) for a detailed explanation of the tags used throughout this.
+
+| Tag and Version                                                        | Description                                     |
+|------------------------------------------------------------------------|-------------------------------------------------|
+| ![python-v1.0.1](https://img.shields.io/badge/Python-v1.0.1-blue)      | Code examples written in Python version 1.0.1.  |
+| ![nodejs-v1.0.1](https://img.shields.io/badge/Node.js-v1.0.1-green)    | Code examples written in Node.js version 1.0.1. |
+| ![java-v1.0.1](https://img.shields.io/badge/Java-v1.0.1-red)           | Code examples written in Java version 1.0.1.    |
+| ![golang-v1.0.1](https://img.shields.io/badge/Golang-v1.0.1-lightgrey) | Code examples written in Golang version 1.0.1.  |
 
 ## Workflow Details
 

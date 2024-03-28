@@ -32,7 +32,7 @@ particularly for Python in this segment.
 
 **This list is maintained and updated automatically by our CI/CD pipeline.**
 
-- [python-v0.0.1-rc2](https://github.com/kksudo/startups-cicd-pipeline/tree/python-v0.0.1-rc2), [python-v0.0.1-rc1](https://github.com/kksudo/startups-cicd-pipeline/tree/python-v0.0.1-rc1) 
+- [python-v0.0.1-rc2](https://github.com/kksudo/startups-cicd-pipeline/tree/python-v0.0.1-rc2), [python-v0.0.1-rc1](https://github.com/kksudo/startups-cicd-pipeline/tree/python-v0.0.1-rc1) , [python-v0.1.0](https://github.com/kksudo/startups-cicd-pipeline/tree/python-v0.1.0)
 - [nodejs-v1.0.1](https://github.com/kksudo/startups-cicd-pipeline/tree/nodejs-v1.0.1)
 - [java-v1.0.1](https://github.com/kksudo/startups-cicd-pipeline/tree/java-v1.0.1)
 - [golang-v1.0.1](https://github.com/kksudo/startups-cicd-pipeline/tree/golang-v1.0.1)
